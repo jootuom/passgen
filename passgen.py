@@ -23,22 +23,9 @@ def passgen(length=20, specials=False):
 	
 	pool.update(u, l, n)
 	if specials: pool.update(s)
-	
-	if length <= 6:
-		rsize = 24
-	elif length <= 8:
-		rsize = 32
-	elif length <= 12:
-		rsize = 48
-	elif length <= 16:
-		rsize = 64
-	elif length <= 20:
-		rsize = 96
-	else:
-		raise ValueError("bad password length")
 
 	while True:
-		rand = set(os.urandom(rsize))
+		rand = set(os.urandom(length * 5))
 		m = rand & pool
 		
 		matches = [bool(u & m), bool(l & m), bool(n & m)]
